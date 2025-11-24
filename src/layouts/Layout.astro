@@ -161,6 +161,19 @@
             justify-content: center;
             position: relative;
             overflow: hidden;
+            /* ADD THIS - Same gallery wall effect */
+            box-shadow: 
+                2px 2px 8px rgba(0, 0, 0, 0.1),
+                4px 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Optional hover effect */
+        }
+
+        /* Optional: Add subtle hover effect to about image too */
+        .about-image:hover {
+            transform: translateY(-3px) translateX(-2px);
+            box-shadow: 
+                4px 6px 16px rgba(0, 0, 0, 0.12),
+                6px 8px 20px rgba(0, 0, 0, 0.08);
         }
 
         .about-image img {
@@ -191,6 +204,20 @@
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
         }
+        
+        .gallery-item {
+              box-shadow: 
+                  2px 2px 8px rgba(0, 0, 0, 0.1),
+                  4px 4px 12px rgba(0, 0, 0, 0.08);
+          }
+
+          .gallery-item:hover {
+              transform: translateY(-5px) translateX(-2px);
+              box-shadow: 
+                  4px 8px 20px rgba(0, 0, 0, 0.15),
+                  8px 12px 25px rgba(0, 0, 0, 0.1);
+          }
+        
 
         .gallery-item {
             aspect-ratio: 1;
