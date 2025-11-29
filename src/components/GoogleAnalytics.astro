@@ -1,6 +1,5 @@
 ---
-const GA_MEASUREMENT_ID = import.meta.env.PUBLIC_GA_ID;
-console.log('GA_MEASUREMENT_ID:', GA_MEASUREMENT_ID); // Debug log
+const GA_MEASUREMENT_ID = "G-F6BG20BF0T";
 ---
 
 {GA_MEASUREMENT_ID && (
@@ -14,9 +13,4 @@ console.log('GA_MEASUREMENT_ID:', GA_MEASUREMENT_ID); // Debug log
       gtag('config', GA_MEASUREMENT_ID);
     </script>
   </>
-)}
-
-{!GA_MEASUREMENT_ID && (
-  <!-- GA ID not found -->
-  <script>console.log('Google Analytics: PUBLIC_GA_ID not set');</script>
 )}
