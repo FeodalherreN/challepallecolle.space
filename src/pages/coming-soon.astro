@@ -7,7 +7,11 @@ interface UpcomingEntry {
   image: string;
 }
 
-const upcomingFiles = import.meta.glob<UpcomingEntry>('../assets/upcoming/*.md', { eager: true });
+const upcomingFiles = import.meta.glob<MarkdownInstance<UpcomingEntry>>(
+  '../assets/upcoming/*.md',
+  { eager: true }
+);
+
 const upcomingCollection = Object.values(upcomingFiles).map((entry, idx) => ({
   id: idx,
   ...entry.frontmatter
