@@ -2,8 +2,9 @@ backend:
   name: github
   repo: FeodalherreN/challepallecolle.space
   branch: main
-  auth_type: implicit
-  app_id: Ov23litGFC6jBKLt7mJs
+  base_url: https://decap-cms-oauth.vercel.app
+  auth_endpoint: /api/auth
+
 
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
