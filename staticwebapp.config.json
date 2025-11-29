@@ -1,13 +1,7 @@
 {
   "routes": [
-    {
-      "route": "/.auth/me",
-      "allowedRoles": ["authenticated"]
-    },
-    {
-      "route": "/admin/api/*",
-      "allowedRoles": ["authenticated"]
-    }
+    { "route": "/.auth/me", "allowedRoles": ["authenticated"] },
+    { "route": "/admin/api/*", "allowedRoles": ["authenticated"] }
   ],
   "auth": {
     "identityProviders": {

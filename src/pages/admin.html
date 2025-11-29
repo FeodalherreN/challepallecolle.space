@@ -6,8 +6,60 @@
     <meta name="robots" content="noindex" />
     <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url" />
     <title>Content Manager</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      button {
+        padding: 1em 2em;
+        font-size: 1rem;
+        cursor: pointer;
+        border: none;
+        border-radius: 0.5em;
+        background-color: #24292f;
+        color: white;
+      }
+      #loading {
+        margin-bottom: 1em;
+      }
+    </style>
+    <script>
+      async function checkAuth() {
+        try {
+          const res = await fetch('/.auth/me');
+          if (res.status === 401) {
+            // Not authenticated → redirect to SWA GitHub login
+            window.location.href = '/.auth/login/github';
+          } else {
+            // Authenticated → show CMS
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('cms-container').style.display = 'block';
+          }
+        } catch (err) {
+          console.error('Auth check failed', err);
+          window.location.href = '/.auth/login/github';
+        }
+      }
+
+      window.addEventListener('DOMContentLoaded', checkAuth);
+    </script>
   </head>
   <body>
-    <script src="https://unpkg.com/decap-cms@^3.1.2/dist/decap-cms.js"></script>
+    <div id="loading">Checking authentication...</div>
+
+    <!-- This container will hold Decap CMS once authenticated -->
+    <div id="cms-container" style="display:none;">
+      <script src="https://unpkg.com/decap-cms@^3.1.2/dist/decap-cms.js"></script>
+    </div>
+
+    <noscript>
+      <p>Please enable JavaScript to use the CMS.</p>
+    </noscript>
   </body>
 </html>
