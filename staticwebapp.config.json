@@ -1,0 +1,21 @@
+{
+  "routes": [
+    {
+      "route": "/admin/*",
+      "allowedRoles": ["authenticated"]
+    }
+  ],
+  "auth": {
+    "identityProviders": {
+      "github": {
+        "clientId": "Ov23litGFC6jBKLt7mJs",
+        "clientSecretSettingName": "OAUTH_GITHUB_CLIENT_SECRET",
+        "login": {
+          "loginPath": "/.auth/login/github",
+          "logoutPath": "/.auth/logout",
+          "callbackPath": "/.auth/login/github/callback"
+        }
+      }
+    }
+  }
+}
