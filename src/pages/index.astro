@@ -14,7 +14,7 @@ import Layout from '../layouts/Layout.astro';
 		</div>
 
 		<!-- Navigation -->
-		<nav class="flex flex-col items-center gap-4 md:gap-5 mb-12">
+		<nav class="flex flex-col items-center gap-4 md:gap-5">
 			<a 
 				href="/" 
 				class="font-serif text-2xl md:text-3xl tracking-[0.3em] uppercase hover:tracking-[0.4em] transition-all duration-300"
@@ -42,7 +42,7 @@ import Layout from '../layouts/Layout.astro';
 		</nav>
 
 		<!-- Instagram Link -->
-		<div class="mt-12">
+		<div class="instagram-spacing">
 			<a 
 				href="https://www.instagram.com/palmscollections/" 
 				target="_blank" 
@@ -59,6 +59,10 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 
 <style>
+	.instagram-spacing {
+		margin-top: 3rem;
+	}
+	
 	nav a {
 		position: relative;
 	}
