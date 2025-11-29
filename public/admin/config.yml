@@ -1,8 +1,8 @@
 backend:
-  name: github
-  repo: FeodalherreN/challepallecolle.space
+  name: git-gateway
   branch: main
-  auth_type: "implicit"
+  repo: FeodalherreN/challepallecolle.space
+  auth_type: implicit
 
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
