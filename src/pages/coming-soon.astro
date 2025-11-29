@@ -1,49 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import type { MarkdownInstance } from 'astro';
 
-// Placeholder for upcoming pieces
-const upcomingCollection = [
-	{
-		id: 1,
-		title: "Upcoming Piece 1",
-		image: "/collection/dummy1.jpeg"
-	},
-	{
-		id: 2,
-		title: "Upcoming Piece 2",
-		image: "/collection/dummy2.jpeg"
-	},
-	{
-		id: 3,
-		title: "Upcoming Piece 3",
-		image: "/collection/dummy3.jpeg"
-	},
-	{
-		id: 4,
-		title: "Upcoming Piece 4",
-		image: "/collection/dummy4.jpeg"
-	},
-	{
-		id: 5,
-		title: "Upcoming Piece 5",
-		image: "/collection/dummy5.jpeg"
-	},
-	{
-		id: 6,
-		title: "Upcoming Piece 6",
-		image: "/collection/dummy6.jpeg"
-	},
-	{
-		id: 7,
-		title: "Upcoming Piece 7",
-		image: "/collection/dummy7.jpeg"
-	},
-	{
-		id: 8,
-		title: "Upcoming Piece 8",
-		image: "/collection/dummy8.jpeg"
-	}
-];
+interface UpcomingEntry {
+  title: string;
+  image: string;
+}
+
+const upcomingFiles = import.meta.glob<UpcomingEntry>('../assets/upcoming/*.md', { eager: true });
+const upcomingCollection = Object.values(upcomingFiles).map((entry, idx) => ({
+  id: idx,
+  ...entry.frontmatter
+}));
 ---
 
 <Layout title="Coming Soon - Palms Collections" description="Preview upcoming artworks from Chantal Palm's next collection.">

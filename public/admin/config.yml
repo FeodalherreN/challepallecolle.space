@@ -1,0 +1,29 @@
+backend:
+  name: github
+  repo: FeodalherreN/challepallecolle.space
+  branch: main
+
+media_folder: "public/images/uploads"   # where uploaded images get stored
+public_folder: "/images/uploads"        # how the site accesses them
+
+collections:
+  - name: "sale"
+    label: "Sale"
+    folder: "src/assets/collections"
+    create: true
+    extension: "md"
+    format: "frontmatter"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Price", name: "price", widget: "number" }
+      - { label: "Image", name: "image", widget: "image" }
+
+  - name: "upcoming"
+    label: "Upcoming"
+    folder: "src/assets/upcoming"
+    create: true
+    extension: "md"
+    format: "frontmatter"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Image", name: "image", widget: "image" }

@@ -1,58 +1,21 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import type { MarkdownInstance } from 'astro';
 
-// This would normally come from a CMS or data file
-// For now, it's a placeholder structure
-const availableCollection = [
-	{
-		id: 1,
-		title: "Piece 1",
-		image: "/collection/dummy1.jpeg",
-		price: 5000
-	},
-	{
-		id: 2,
-		title: "Piece 2",
-		image: "/collection/dummy2.jpeg",
-		price: 5000
-	},
-	{
-		id: 3,
-		title: "Piece 3",
-		image: "/collection/dummy3.jpeg",
-		price: 5000
-	},
-	{
-		id: 4,
-		title: "Piece 4",
-		image: "/collection/dummy4.jpeg",
-		price: 5000
-	},
-	{
-		id: 5,
-		title: "Piece 5",
-		image: "/collection/dummy5.jpeg",
-		price: 5000
-	},
-	{
-		id: 6,
-		title: "Piece 6",
-		image: "/collection/dummy6.jpeg",
-		price: 5000
-	},
-	{
-		id: 7,
-		title: "Piece 7",
-		image: "/collection/dummy7.jpeg",
-		price: 5000
-	},
-	{
-		id: 8,
-		title: "Piece 8",
-		image: "/collection/dummy8.jpeg",
-		price: 5000
-	}
-];
+interface SaleEntry {
+  title: string;
+  price: number;
+  image: string;
+}
+
+const saleFiles = import.meta.glob<MarkdownInstance<SaleEntry>>(
+  '../assets/collections/*.md',
+  { eager: true }
+);
+const availableCollection = Object.values(saleFiles).map((entry, idx) => ({
+  id: idx,
+  ...entry.frontmatter
+}));
 ---
 
 <Layout title="Store - Palms Collections" description="Browse available artworks from Chantal Palm's exclusive collection of contemporary graffiti-style paintings.">
