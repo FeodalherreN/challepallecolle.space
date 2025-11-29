@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import GoogleAnalytics from '../components/GoogleAnalytics.astro';
 
 interface Props {
 	title: string;
@@ -31,6 +32,7 @@ const { title, description = "Palms Collections - Contemporary art by Chantal Pa
 		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<GoogleAnalytics />
 	</head>
 	<body class="min-h-screen bg-white text-black font-sans antialiased">
 		<slot />

@@ -3,8 +3,8 @@ backend:
   repo: FeodalherreN/challepallecolle.space
   branch: main
 
-media_folder: "public/images/uploads"   # where uploaded images get stored
-public_folder: "/images/uploads"        # how the site accesses them
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
 
 collections:
   - name: "sale"
@@ -13,7 +13,9 @@ collections:
     create: true
     extension: "md"
     format: "frontmatter"
+    sortable_fields: ["order", "title"]
     fields:
+      - { label: "Order", name: "order", widget: "number", default: 0, hint: "Lower numbers appear first" }
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Price", name: "price", widget: "number" }
       - { label: "Image", name: "image", widget: "image" }
@@ -24,6 +26,8 @@ collections:
     create: true
     extension: "md"
     format: "frontmatter"
+    sortable_fields: ["order", "title"]
     fields:
+      - { label: "Order", name: "order", widget: "number", default: 0, hint: "Lower numbers appear first" }
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Image", name: "image", widget: "image" }

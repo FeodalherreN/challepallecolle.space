@@ -6,16 +6,19 @@ interface SaleEntry {
   title: string;
   price: number;
   image: string;
+  order?: number;
 }
 
 const saleFiles = import.meta.glob<MarkdownInstance<SaleEntry>>(
   '../assets/collections/*.md',
   { eager: true }
 );
-const availableCollection = Object.values(saleFiles).map((entry, idx) => ({
-  id: idx,
-  ...entry.frontmatter
-}));
+const availableCollection = Object.values(saleFiles)
+  .map((entry, idx) => ({
+    id: idx,
+    ...entry.frontmatter
+  }))
+  .sort((a, b) => (a.order || 0) - (b.order || 0));
 ---
 
 <Layout title="Store - Palms Collections" description="Browse available artworks from Chantal Palm's exclusive collection of contemporary graffiti-style paintings.">

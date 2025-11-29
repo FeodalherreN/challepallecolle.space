@@ -5,6 +5,7 @@ import type { MarkdownInstance } from 'astro';
 interface UpcomingEntry {
   title: string;
   image: string;
+  order?: number; 
 }
 
 const upcomingFiles = import.meta.glob<MarkdownInstance<UpcomingEntry>>(
@@ -12,10 +13,12 @@ const upcomingFiles = import.meta.glob<MarkdownInstance<UpcomingEntry>>(
   { eager: true }
 );
 
-const upcomingCollection = Object.values(upcomingFiles).map((entry, idx) => ({
-  id: idx,
-  ...entry.frontmatter
-}));
+const upcomingCollection = Object.values(upcomingFiles)
+  .map((entry, idx) => ({
+    id: idx,
+    ...entry.frontmatter
+  }))
+  .sort((a, b) => (a.order || 0) - (b.order || 0));
 ---
 
 <Layout title="Coming Soon - Palms Collections" description="Preview upcoming artworks from Chantal Palm's next collection.">
