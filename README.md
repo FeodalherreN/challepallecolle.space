@@ -1,46 +1,122 @@
-# Astro Starter Kit: Basics
+# Chantal Palm - Palms Collections
 
-```sh
-npm create astro@latest -- --template basics
+A minimalist portfolio website for contemporary artist Chantal Palm, showcasing her graffiti-style paintings with a sophisticated aesthetic.
+
+## Tech Stack
+
+- **Astro** v5.0+ - Static site generator
+- **Tailwind CSS** v4.0+ - Utility-first CSS framework (using new Vite plugin)
+- **TypeScript** - Type safety
+
+## Project Structure
+
 ```
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
 /
 ├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
+│   └── logos/
+│       └── logo-rad.png          # Main logo
+├── src/
+│   ├── layouts/
+│   │   └── Layout.astro          # Base layout with SEO
+│   ├── pages/
+│   │   ├── index.astro           # Home page (landing)
+│   │   ├── store.astro           # Available collection gallery
+│   │   ├── coming-soon.astro     # Upcoming pieces (blurred)
+│   │   └── contact.astro         # Contact information
+│   └── env.d.ts
+├── astro.config.mjs
+├── tailwind.config.mjs
 └── package.json
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## Setup
 
-## 🧞 Commands
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-All commands are run from the root of the project, from a terminal:
+2. **Add your logo:**
+   - Place `logo-rad.png` in `public/logos/`
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+3. **Add collection images:**
+   - Create `public/collection/` directory
+   - Add painting images for store and coming-soon pages
+   - Update the arrays in `store.astro` and `coming-soon.astro` with your actual images
 
-## 👀 Want to learn more?
+4. **Run development server:**
+   ```bash
+   npm run dev
+   ```
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+5. **Build for production:**
+   ```bash
+   npm run build
+   ```
+
+## Adding Collection Items
+
+### Store (Available Pieces)
+
+Edit `src/pages/store.astro`:
+
+```javascript
+const availableCollection = [
+  {
+    id: 1,
+    title: "Your Painting Title",
+    image: "/collection/painting-1.jpg",
+    price: "Available" // or actual price
+  },
+  // Add more items...
+];
+```
+
+### Coming Soon (Upcoming Pieces)
+
+Edit `src/pages/coming-soon.astro`:
+
+```javascript
+const upcomingCollection = [
+  {
+    id: 1,
+    title: "Upcoming Piece Title",
+    image: "/collection/upcoming-1.jpg"
+  },
+  // Add more items...
+];
+```
+
+## Customization
+
+### Contact Information
+
+Update email and other details in `src/pages/contact.astro`
+
+### SEO & Meta Tags
+
+All pages have proper SEO setup. Update site-wide description in `src/layouts/Layout.astro`
+
+### Styling
+
+- Global styles in `src/layouts/Layout.astro`
+- Tailwind config in `tailwind.config.mjs`
+- Custom CSS in individual `.astro` files
+
+## Features
+
+✨ **Minimalist Design** - Clean, distraction-free interface
+📱 **Fully Responsive** - Mobile and desktop optimized
+🎨 **Gallery Views** - Elegant grid layouts for collections
+😶‍🌫️ **Blur Effect** - Coming soon items have blur overlay
+🔍 **SEO Optimized** - Meta tags, Open Graph, proper semantics
+⚡ **Fast Performance** - Static site generation with Astro
+🎯 **Accessible** - Semantic HTML and ARIA labels
+
+## Author
+
+Built by Markus Olsson for Chantal Palm / Palms Collections
+
+## License
+
+All rights reserved - Chantal Palm © 2023

@@ -1,468 +1,50 @@
-<!-- <!doctype html>
+---
+import '../styles/global.css';
+
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description = "Palms Collections - Contemporary art by Chantal Palm. Explore exclusive graffiti-style paintings blending sophistication with underground aesthetics." } = Astro.props;
+---
+
+<!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="author" content="Markus Olsson" />
+		<meta name="keywords" content="Chantal Palm, Palms Collections, contemporary art, graffiti art, paintings, art collection" />
+		
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:title" content={title} />
+		<meta property="twitter:description" content={description} />
+		
+		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Chantal Palm Collection</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+		<title>{title}</title>
 	</head>
-	<body>
+	<body class="min-h-screen bg-white text-black font-sans antialiased">
 		<slot />
 	</body>
-</html> -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chantal Palm Collection - Contemporary Art</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --cream: #FAF9F6;
-            --charcoal: #2C2C2C;
-            --gold: #C9A55A;
-            --soft-grey: #E8E8E8;
-        }
-
-        body {
-            font-family: 'Georgia', serif;
-            background: var(--cream);
-            color: var(--charcoal);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 2rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            background: rgba(250, 249, 246, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(44, 44, 44, 0.1);
-        }
-
-        nav .logo {
-            font-size: 1.2rem;
-            letter-spacing: 3px;
-            font-weight: 300;
-            text-transform: uppercase;
-        }
-
-        nav ul {
-            display: flex;
-            gap: 3rem;
-            list-style: none;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: var(--charcoal);
-            font-size: 0.95rem;
-            letter-spacing: 1px;
-            transition: color 0.3s;
-            font-family: 'Courier New', monospace;
-        }
-
-        nav a:hover {
-            color: var(--gold);
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 0 5%;
-            position: relative;
-        }
-
-        .hero-logo {
-            width: min(400px, 80vw);
-            margin-bottom: 3rem;
-            animation: fadeInScale 1.2s ease-out;
-        }
-
-        .hero-tagline {
-            font-size: clamp(1rem, 2vw, 1.3rem);
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            font-weight: 300;
-            color: var(--charcoal);
-            margin-bottom: 1rem;
-            animation: fadeIn 1.5s ease-out 0.3s both;
-            font-family: 'Courier New', monospace;
-        }
-
-        .hero-subtitle {
-            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
-            font-style: italic;
-            color: #666;
-            animation: fadeIn 1.5s ease-out 0.6s both;
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 3rem;
-            font-size: 0.85rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            animation: float 3s ease-in-out infinite;
-            font-family: 'Courier New', monospace;
-        }
-
-        /* About Section */
-        .about {
-            padding: 10rem 5%;
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 5rem;
-            align-items: center;
-        }
-
-        .about-text h2 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            margin-bottom: 2rem;
-            font-weight: 300;
-            line-height: 1.1;
-        }
-
-        .about-text p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #555;
-            margin-bottom: 1.5rem;
-        }
-
-        .about-image {
-            width: 100%;
-            height: 500px;
-            background: var(--soft-grey);
-            border: 1px solid rgba(44, 44, 44, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            /* ADD THIS - Same gallery wall effect */
-            box-shadow: 
-                2px 2px 8px rgba(0, 0, 0, 0.1),
-                4px 4px 12px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Optional hover effect */
-        }
-
-        /* Optional: Add subtle hover effect to about image too */
-        .about-image:hover {
-            transform: translateY(-3px) translateX(-2px);
-            box-shadow: 
-                4px 6px 16px rgba(0, 0, 0, 0.12),
-                6px 8px 20px rgba(0, 0, 0, 0.08);
-        }
-
-        .about-image img {
-            width: 100%; /* Changed from 60% */
-            height: 100%; /* Changed from auto */
-            object-fit: cover; /* or contain, depending on what you prefer */
-            filter: contrast(1.1);
-        }
-
-        /* Gallery Preview */
-        .gallery-preview {
-            padding: 5rem 5% 10rem;
-            background: white;
-        }
-
-        .gallery-preview h2 {
-            text-align: center;
-            font-size: clamp(2rem, 4vw, 3rem);
-            margin-bottom: 4rem;
-            font-weight: 300;
-            letter-spacing: 2px;
-        }
-
-        .gallery-grid {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .gallery-item {
-              box-shadow: 
-                  2px 2px 8px rgba(0, 0, 0, 0.1),
-                  4px 4px 12px rgba(0, 0, 0, 0.08);
-          }
-
-          .gallery-item:hover {
-              transform: translateY(-5px) translateX(-2px);
-              box-shadow: 
-                  4px 8px 20px rgba(0, 0, 0, 0.15),
-                  8px 12px 25px rgba(0, 0, 0, 0.1);
-          }
-        
-
-        .gallery-item {
-            aspect-ratio: 1;
-            background: var(--soft-grey);
-            border: 1px solid rgba(44, 44, 44, 0.1);
-            cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-style: italic;
-            color: #999;
-        }
-
-        .gallery-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .gallery-item {
-            aspect-ratio: 1;
-            background: var(--soft-grey);
-            border: 1px solid rgba(44, 44, 44, 0.1);
-            cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            overflow: hidden; /* ADD THIS - prevents images from overflowing */
-        }
-
-        /* ADD THIS NEW RULE */
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* This makes the image cover the entire area */
-            display: block; /* Removes any extra spacing below the image */
-        }
-
-        .gallery-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 10rem 5%;
-            background: var(--charcoal);
-            color: var(--cream);
-            text-align: center;
-        }
-
-        .contact h2 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            margin-bottom: 2rem;
-            font-weight: 300;
-        }
-
-        .contact p {
-            font-size: 1.2rem;
-            margin-bottom: 3rem;
-            color: #CCC;
-        }
-
-        .contact-email {
-            font-size: 1.5rem;
-            color: var(--gold);
-            text-decoration: none;
-            letter-spacing: 2px;
-            transition: opacity 0.3s;
-            font-family: 'Courier New', monospace;
-        }
-
-        .contact-email:hover {
-            opacity: 0.7;
-        }
-
-        .social-links {
-            margin-top: 3rem;
-            display: flex;
-            gap: 2rem;
-            justify-content: center;
-        }
-
-        .social-links a {
-            color: var(--cream);
-            text-decoration: none;
-            font-size: 0.95rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            transition: color 0.3s;
-            font-family: 'Courier New', monospace;
-        }
-
-        .social-links a:hover {
-            color: var(--gold);
-        }
-
-        /* Footer */
-        footer {
-            padding: 3rem 5%;
-            background: var(--charcoal);
-            color: #999;
-            text-align: center;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInScale {
-            from {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            nav ul {
-                gap: 1.5rem;
-            }
-
-            .about {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-                padding: 5rem 5%;
-            }
-
-            .gallery-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .social-links {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-
-        @media (max-width: 768px) {
-          nav {
-              padding: 1rem 3%; /* Tighter padding */
-          }
-          
-          nav .logo {
-              font-size: 0.9rem; /* Smaller logo */
-              letter-spacing: 2px;
-          }
-          
-          nav ul {
-              gap: 0.8rem; /* Tighter gap */
-          }
-          
-          nav a {
-              font-size: 0.75rem; /* Smaller links */
-              letter-spacing: 0.5px;
-          }
-      }
-    </style>
-</head>
-<body>
-    <nav>
-        <div class="logo">Chantal Palm</div>
-        <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#gallery">Gallery</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
-
-    <section class="hero">
-        <img src="logos/logo-rad.png" alt="Chantal Palm Collection" class="hero-logo">
-        <div class="hero-tagline">Contemporary Street Art</div>
-        <div class="hero-subtitle">Where elegance meets the streets</div>
-        <div class="scroll-indicator">↓ Explore</div>
-    </section>
-
-    <section class="about" id="about">
-        <div class="about-text">
-            <h2>Art that speaks,<br>streets that listen</h2>
-            <p>
-                Chantal Palm Collection bridges the world of refined contemporary art with 
-                the raw energy of urban expression. Each piece tells a story of contrast—
-                sophistication meeting rebellion, elegance dancing with grit.
-            </p>
-            <p>
-                Born from spray cans and vision, transformed into gallery-worthy statements.
-                This is art that refuses to choose between beauty and edge.
-            </p>
-        </div>
-        <div class="about-image">
-            <img src="assets/dummy7.jpeg" alt="Graffiti logo">
-        </div>
-    </section>
-
-    <section class="gallery-preview" id="gallery">
-        <h2>Selected Works</h2>
-        <div class="gallery-grid">
-            <div class="gallery-item"><img src="assets/dummy1.jpeg" alt="Graffiti logo"></div>
-            <div class="gallery-item"><img src="assets/dummy2.jpeg" alt="Graffiti logo"></div>
-            <div class="gallery-item"><img src="assets/dummy3.jpeg" alt="Graffiti logo"></div>
-            <div class="gallery-item"><img src="assets/dummy4.jpeg" alt="Graffiti logo"></div>
-            <div class="gallery-item"><img src="assets/dummy5.jpeg" alt="Graffiti logo"></div>
-            <div class="gallery-item"><img src="assets/dummy6.jpeg" alt="Graffiti logo"></div>
-        </div>
-    </section>
-
-    <section class="contact" id="contact">
-        <h2>Let's Create<br>Something Together</h2>
-        <p>Commissions, exhibitions, and collaborations welcome</p>
-        <a href="mailto:hello@chantalpalm.art" class="contact-email">hello@chantalpalm.art</a>
-        <div class="social-links">
-            <a href="https://www.instagram.com/chantalpalmcollection/">Instagram</a>
-            <a href="#">Portfolio</a>
-            <a href="#">Shop</a>
-        </div>
-    </section>
-
-    <footer>
-        <p>© 2025 Chantal Palm Collection. All rights reserved.</p>
-    </footer>
-</body>
 </html>
 
-<style>
-
+<style is:global>
+	* {
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+	}
+	
+	body {
+		font-family: 'Montserrat', sans-serif;
+	}
 </style>
