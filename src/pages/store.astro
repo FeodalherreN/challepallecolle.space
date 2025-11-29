@@ -71,37 +71,41 @@ const availableCollection = [
 		</header>
 
 		<!-- Gallery -->
-		<main class="container mx-auto px-4 md:px-8 max-w-7xl py-16 md:py-24 pb-32">
-			<!-- If no items -->
-			{availableCollection.length === 0 && (
-				<div class="text-center py-20">
-					<p class="text-2xl md:text-3xl font-serif tracking-wide opacity-50">
-						Collection coming soon
-					</p>
-				</div>
-			)}
+		<main class="py-16 md:py-24 pb-32">
+			<div class="w-full flex justify-center px-4 md:px-8">
+				<div class="w-full max-w-7xl">
+					<!-- If no items -->
+					{availableCollection.length === 0 && (
+						<div class="text-center py-20">
+							<p class="text-2xl md:text-3xl font-serif tracking-wide opacity-50">
+								Collection coming soon
+							</p>
+						</div>
+					)}
 
-			<!-- Gallery Grid -->
-			{availableCollection.length > 0 && (
-				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-16">
-					{availableCollection.map((piece) => (
-						<article class="group cursor-pointer">
-							<div class="aspect-square bg-gray-100 mb-6 overflow-hidden">
-								<img 
-									src={piece.image} 
-									alt={piece.title}
-									class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-									loading="lazy"
-								/>
-							</div>
-							<div class="space-y-2 text-center">
-								<h2 class="text-base md:text-lg tracking-wide">{piece.title}</h2>
-								<p class="text-sm opacity-50">{piece.price}</p>
-							</div>
-						</article>
-					))}
+					<!-- Gallery Grid -->
+					{availableCollection.length > 0 && (
+						<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-16 place-items-center">
+							{availableCollection.map((piece) => (
+								<article class="group cursor-pointer w-full max-w-sm">
+									<div class="aspect-square bg-gray-100 mb-6 overflow-hidden">
+										<img 
+											src={piece.image} 
+											alt={piece.title}
+											class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+											loading="lazy"
+										/>
+									</div>
+									<div class="space-y-2 text-center">
+										<h2 class="text-base md:text-lg tracking-wide">{piece.title}</h2>
+										<p class="text-sm opacity-50">{piece.price}</p>
+									</div>
+								</article>
+							))}
+						</div>
+					)}
 				</div>
-			)}
+			</div>
 		</main>
 
 		<!-- Instagram Footer -->
