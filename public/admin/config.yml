@@ -2,7 +2,7 @@ backend:
   name: github
   repo: FeodalherreN/challepallecolle.space
   branch: main
-  base_url: https://netlify-cms.adrianub.vercel.app
+  base_url: https://decap-cms-oauth.vercel.app
   auth_endpoint: /api/auth
   
 media_folder: "public/images/uploads"
